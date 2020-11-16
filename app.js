@@ -6,22 +6,22 @@ const app = express()
 const TOKEN_SECRET = "Vr[9!$[pH-[KN6XrX.7bV(W@wPu3)uYQc"
 
 let users = {
-    john: "passwordjohn",
-    mary: "passwordmary",
-    jhin: "passwordjhin",
-    jinx: "passwordjinx"
+    john: "password-john",
+    mary: "password-mary",
+    jhin: "password-jhin",
+    jinx: "password-jinx"
 }
 
 app.use(express.json());
 app.use(cookieParser())
 app.listen(3000)
 
-function authenticateToken(req, res, next) {
+function authenticateMiddleware(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
-    if (token == null) return res.sendStatus(401)
+    if (token == null) return res.status(401).end()
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403)
+        if (err) return res.status(403).end()
         console.log(user)
         req.user = user
         next()
@@ -30,7 +30,7 @@ function authenticateToken(req, res, next) {
 
 function generateAccessToken(username) {
     return jwt.sign(username, TOKEN_SECRET, {
-        expiresIn: '1800s'
+        expiresIn: 60
     });
 }
 
@@ -39,11 +39,15 @@ app.post('/api/login', (req, res) => {
         const token = generateAccessToken({
             username: req.body.username
         });
-        res.json(token);
+        res.status(200).json({
+            token: token
+        });
     }
-    res.sendStatus(403)
+    res.status(403).end()
 });
 
-app.post('/api/hello', authenticateToken, function (req, res) {
-    res.send('Hello World')
+app.post('/api/hello', authenticateMiddleware, function (req, res) {
+    res.status(200).json({
+        result: 'Hello World'
+    })
 })
