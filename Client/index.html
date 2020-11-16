@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpressJs JWT Auth Demo</title>
+    <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <div id='logo'>
+                <img src="./login-code.svg" />
+                <h5 align="center" class="h-msg">ExpressJs JWT Auth Demo</h5>
+            </div>
+            <div>
+                <input class="user-input" type="text" id="in-name">
+                <input class="user-input" type="password" id="in-pwd">
+            </div>
+            <div class='user-actions'>
+                <button id="btn-login" class="btn btn-secondary" onclick="loginClicked()">Log in</button>
+                <button id="btn-logout" class="btn btn-secondary" onclick="logoutClicked()" style="display:none">Logout</button>
+            </div>
+            <div class='api-actions'>
+                <button id="btn-public" class="btn btn-secondary" onclick="callPublicClicked()">Call Public API</button>
+                <button id="btn-private" class="btn btn-secondary" onclick="callProtectedClicked()">Call Protected API</button>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

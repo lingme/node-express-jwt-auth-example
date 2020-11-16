@@ -1,0 +1,117 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "proxima-nova", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 100;
+}
+
+#message {
+  min-height: 40px;
+  font-size: 22px;
+}
+
+#logo img {
+  width: 120px;
+  display: block;
+  margin: auto;
+}
+
+#logo h5{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  font-size: 16px;
+  letter-spacing: 1px;
+  border: 0;
+  background-color: #16214D;
+  color: white;
+  min-width: 80px;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.btn:hover {
+  background-color: #44C7F4;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
+.btn:disabled {
+  background-color: #333;
+  color: #666;
+}
+
+.api-actions,
+.user-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.user-input {
+  margin: 0 auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 240px;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+.container {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.api-actions button:last-of-type,
+.user-actions button:last-of-type {
+  margin-left: 20px;
+}
+
+.user-actions{
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+
+  .api-actions,
+  .user-actions {
+    flex-direction: column;
+  }
+
+  .api-actions button:last-of-type,
+  .user-actions button:last-of-type {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+}
