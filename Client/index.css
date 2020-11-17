@@ -76,10 +76,9 @@ h3 {
 
 .user-input {
   margin: 0 auto;
-  display: block;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 200px;
+  max-width: 250px;
 }
 
 #box-alert{

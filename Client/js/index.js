@@ -34,7 +34,7 @@ $('#btn-logout').click(function () {
     $('#btn-login').show()
     $('#btn-logout').hide()
     $('#box-alert').empty()
-    showTimeoutAlert('alert-success', 'You logout with success')
+    showTimeoutAlert('alert-info', 'You logout with success')
     eraseCookie('jwt_token')
 })
 
