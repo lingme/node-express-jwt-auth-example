@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/md5.min.js"></script>
 </head>
 
 <body>
@@ -19,11 +20,7 @@
                 <img src="./login-code.svg" />
                 <h5 align="center" class="h-msg">ExpressJs JWT Auth Demo</h5>
             </div>
-            <div id="alert-container">
-                  <div class="alert alert-danger alert-dismissible">
-                    <strong>Error!</strong> Incorrect username or password.
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  </div>
+            <div id="box-alert">
             </div>
             <div>
                 <input class="user-input" type="text" id="in-name">
@@ -39,7 +36,7 @@
             </div>
         </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 </html>

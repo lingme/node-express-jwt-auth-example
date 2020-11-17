@@ -82,10 +82,9 @@ h3 {
   width: 240px;
 }
 
-#alert-container{
+#box-alert{
   margin: 0 auto;
-  width: 40%;
-  margin-bottom: 30px;
+  width: 50%;
 }
 
 .main {
