@@ -2,9 +2,11 @@
 
 ## Default account password
 
-* john password-john
-* mary password-mary
-* jhin password-jhin
-* jinx password-jinx
+|Account|Password|
+|-|-|
+john|password-john
+mary|password-mary
+jhin|password-jhin
+jinx|password-jinx
 
 ![](screenprt.png)
