@@ -1,6 +1,7 @@
 const express = require('express')
 const jwt = require("jsonwebtoken")
 const cors = require("cors")
+var md5 = require('md5');
 const cookieParser = require('cookie-parser')
 const app = express()
 
@@ -13,21 +14,26 @@ let users = {
     jinx: "password-jinx"
 }
 
+let options = {
+    maxAge: 1000 * 60 * 15,
+    httpOnly: true,
+    signed: true
+}
+
 app.use(express.json())
-app.use(cookieParser())
+app.use(cookieParser(TOKEN_SECRET))
 app.listen(3000)
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "*")
+    next()
 });
 
 function authenticateMiddleware(req, res, next) {
     const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if (token == null) return res.status(401).end()
-    jwt.verify(token, TOKEN_SECRET, (err, user) => {
+    if (authHeader == null) return res.status(401).end()
+    jwt.verify(authHeader, TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).end()
         console.log(user)
         req.user = user
@@ -37,14 +43,12 @@ function authenticateMiddleware(req, res, next) {
 
 function generateAccessToken(username) {
     return jwt.sign(username, TOKEN_SECRET, {
-        expiresIn: 60
+        expiresIn: 60 * 60
     });
 }
 
 app.post('/api/login', (req, res) => {
-    console.log(req.body.username)
-    console.log(req.body.password)
-    if (req.body.username && users[req.body.username] === req.body.password) {
+    if (req.body.username && users[req.body.username] !== undefined && md5(users[req.body.username]) === req.body.password) {
         const token = generateAccessToken({
             username: req.body.username
         });
@@ -55,8 +59,14 @@ app.post('/api/login', (req, res) => {
     res.status(403).end()
 });
 
-app.post('/api/hello', authenticateMiddleware, function (req, res) {
+app.post('/api/protected', authenticateMiddleware, function (req, res) {
     res.status(200).json({
-        result: 'Hello World'
+        result: 'Hi from Protected API'
+    })
+})
+
+app.post('/api/public', function (req, res) {
+    res.status(200).json({
+        result: 'Hi from Public API'
     })
 })
